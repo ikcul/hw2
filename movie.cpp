@@ -20,7 +20,7 @@ Movie::~Movie(){
 std::set<std::string> Movie::keywords() const{
     std::string temp = "";
 
-    temp +=  name_ + " " + genre_ + " " + rating_;
+    temp +=  name_ + " " + genre_;
     
     return parseStringToWords(temp);
 }
