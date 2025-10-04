@@ -95,7 +95,10 @@ void MyDataStore::addToCart(const std::string& username, int hitIdx){
 }
 void MyDataStore::viewCart(const std::string& username){
     std::map<std::string, std::vector<Product*>>::iterator cartIt = userCart.find(convToLower(username));
-    if (cartIt != userCart.end()){
+    if (cartIt != userCart.end() || users.find(convToLower(username)) != users.end()){
+        if (!(cartIt != userCart.end())){
+            return;
+        }
         int i = 1;
         for (Product* p : cartIt->second){
             std::cout << "Item #" << i << std::endl;
