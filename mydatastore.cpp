@@ -10,7 +10,13 @@ MyDataStore::MyDataStore(){
 }
 
 MyDataStore::~MyDataStore(){
+    for (Product* p : products){
+        delete p;
+    }
 
+    for (std::map<std::string, User*>::iterator it = users.begin(); it != users.end(); ++it){
+        delete it->second;
+    }
 }
 
 void MyDataStore::addUser(User* user){
