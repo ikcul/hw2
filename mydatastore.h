@@ -1,5 +1,5 @@
 //smth smth
-#ifndef MYDATASTORE_H
+#ifndef MYDATAcSTORE_H
 #define MYDATASTORE_H
 #include "datastore.h"
 #include "product.h"
