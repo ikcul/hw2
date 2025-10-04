@@ -37,10 +37,8 @@ bool Clothing::isMatch(std::vector<std::string>& searchTerms) const{
  */
 std::string Clothing::displayString() const{
     std::string display = name_ + "\n" + 
-                "Size: " + size_ + "\n" + 
-                "Brand: " + brand_ + "\n" + 
-                "Price: $" + to_string(price_) + "\n" + 
-                "Quantity: " + to_string(qty_);
+                "Size: " + size_ + " Brand: " + brand_ + "\n" + 
+                to_string(price_) + " " + to_string(qty_) + " left.";
     return display;
 }
 

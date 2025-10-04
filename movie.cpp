@@ -37,10 +37,8 @@ bool Movie::isMatch(std::vector<std::string>& searchTerms) const{
  */
 std::string Movie::displayString() const{
     std::string display = name_ + "\n" + 
-                "Genre: " + genre_ + "\n" + 
-                "Rating: " + rating_ + "\n" + 
-                "Price: $" + to_string(price_) + "\n" + 
-                "Quantity: " + to_string(qty_);
+                "Genre: " + genre_ + " Rating: " + rating_ + "\n" + 
+                to_string(price_) + " " + to_string(qty_) + " left.";
     return display;
 }
 
