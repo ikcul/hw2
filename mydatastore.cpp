@@ -61,8 +61,8 @@ std::vector<Product*> MyDataStore::search(std::vector<std::string>& terms, int t
     }else{
         if (!hits.empty()){
             temp = hits[0];
-            for (std::set<Product*> s : hits){
-                temp = setIntersection(temp, s);
+            for (size_t i = 1; i < hits.size(); i++){
+                temp = setIntersection(temp, hits[i]);
             }
         }
     }

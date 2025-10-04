@@ -20,9 +20,12 @@ Book::~Book(){
 std::set<std::string> Book::keywords() const{
     std::string temp = "";
 
-    temp +=  name_ + " " + ISBN_ + " " + author_;
+    temp +=  name_ + " " + author_;
     
-    return parseStringToWords(temp);
+    std::set<std::string> keyWordsBook = parseStringToWords(temp);
+    keyWordsBook.insert(convToLower(ISBN_));
+
+    return keyWordsBook;
 }
 
 /**
