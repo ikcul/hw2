@@ -88,16 +88,16 @@ void MyDataStore::dump(std::ostream& ofile) {
 void MyDataStore::addToCart(const std::string& username, int hitIdx){
     std::map<std::string, User*>::iterator aUser = users.find(convToLower(username));
     if (aUser != users.end() && (hitIdx >= 1 && hitIdx <= (int)lastHits.size())){
-        userCart[aUser->second].push_back(lastHits[hitIdx - 1]);
+        userCart[convToLower(username)].push_back(lastHits[hitIdx - 1]);
     }else{
         std::cout << "Invalid request" << std::endl;
     }
 }
 void MyDataStore::viewCart(const std::string& username){
-    std::map<std::string, User*>::iterator aUser = users.find(convToLower(username));
-    if (aUser != users.end()){
+    std::map<std::string, std::vector<Product*>>::iterator cartIt = userCart.find(convToLower(username));
+    if (cartIt != userCart.end()){
         int i = 1;
-        for (Product* p : userCart[aUser->second]){
+        for (Product* p : cartIt->second){
             std::cout << "Item #" << i << std::endl;
             std::cout << p->displayString() << std::endl;
             i++;
@@ -109,7 +109,7 @@ void MyDataStore::viewCart(const std::string& username){
 void MyDataStore::buyCart(const std::string& username){
     std::map<std::string, User*>::iterator aUser = users.find(convToLower(username));
     if (aUser != users.end()){
-        std::map<User*, std::vector<Product*>>::iterator tempCart = userCart.find(aUser->second);
+        std::map<std::string, std::vector<Product*>>::iterator tempCart = userCart.find(convToLower(username));
         if (tempCart != userCart.end()){
             std::vector<Product*>::iterator it = tempCart->second.begin();
             while (it != tempCart->second.end()){

@@ -31,7 +31,7 @@ private:
     std::vector<Product*> lastHits;
     std::map<std::string, std::set<Product*>> keyToProducts;
     std::map<std::string, User*> users;
-    std::map<User*, std::vector<Product*>> userCart;
+    std::map<std::string, std::vector<Product*>> userCart;
 };
 
 #endif
