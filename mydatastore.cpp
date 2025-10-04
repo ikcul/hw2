@@ -71,7 +71,7 @@ std::vector<Product*> MyDataStore::search(std::vector<std::string>& terms, int t
 }
 
 void MyDataStore::dump(std::ostream& ofile) {
-    ofile << "<products" << std::endl;
+    ofile << "<products>" << std::endl;
     for (Product* p : products){
         p->dump(ofile);
     }
