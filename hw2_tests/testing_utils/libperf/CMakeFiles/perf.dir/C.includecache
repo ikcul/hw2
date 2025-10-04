@@ -6,7 +6,7 @@
 
 #IncludeRegexTransform: 
 
-/home/codio/workspace/hw2/hw2_tests/testing_utils/libperf/libperf.c
+/work/hw2/hw2_tests/testing_utils/libperf/libperf.c
 assert.h
 -
 fcntl.h
@@ -38,9 +38,9 @@ unistd.h
 linux/perf_event.h
 -
 libperf.h
-/home/codio/workspace/hw2/hw2_tests/testing_utils/libperf/libperf.h
+/work/hw2/hw2_tests/testing_utils/libperf/libperf.h
 
-/home/codio/workspace/hw2/hw2_tests/testing_utils/libperf/libperf.h
+/work/hw2/hw2_tests/testing_utils/libperf/libperf.h
 stdint.h
 -
 stdio.h

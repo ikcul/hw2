@@ -1,4 +1,4 @@
-# Install script for directory: /home/codio/workspace/hw2/hw2_tests/amazon_tests
+# Install script for directory: /work/hw2/hw2_tests/amazon_tests
 
 # Set the install prefix
 if(NOT DEFINED CMAKE_INSTALL_PREFIX)

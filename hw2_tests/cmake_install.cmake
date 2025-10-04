@@ -1,4 +1,4 @@
-# Install script for directory: /home/codio/workspace/hw2/hw2_tests
+# Install script for directory: /work/hw2/hw2_tests
 
 # Set the install prefix
 if(NOT DEFINED CMAKE_INSTALL_PREFIX)
@@ -39,8 +39,8 @@ endif()
 
 if(NOT CMAKE_INSTALL_LOCAL_ONLY)
   # Include the install script for each subdirectory.
-  include("/home/codio/workspace/hw2/hw2_tests/testing_utils/cmake_install.cmake")
-  include("/home/codio/workspace/hw2/hw2_tests/amazon_tests/cmake_install.cmake")
+  include("/work/hw2/hw2_tests/testing_utils/cmake_install.cmake")
+  include("/work/hw2/hw2_tests/amazon_tests/cmake_install.cmake")
 
 endif()
 
@@ -52,5 +52,5 @@ endif()
 
 string(REPLACE ";" "\n" CMAKE_INSTALL_MANIFEST_CONTENT
        "${CMAKE_INSTALL_MANIFEST_FILES}")
-file(WRITE "/home/codio/workspace/hw2/hw2_tests/${CMAKE_INSTALL_MANIFEST}"
+file(WRITE "/work/hw2/hw2_tests/${CMAKE_INSTALL_MANIFEST}"
      "${CMAKE_INSTALL_MANIFEST_CONTENT}")

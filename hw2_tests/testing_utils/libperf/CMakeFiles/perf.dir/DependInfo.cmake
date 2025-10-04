@@ -4,7 +4,7 @@ set(CMAKE_DEPENDS_LANGUAGES
   )
 # The set of files for implicit dependencies of each language:
 set(CMAKE_DEPENDS_CHECK_C
-  "/home/codio/workspace/hw2/hw2_tests/testing_utils/libperf/libperf.c" "/home/codio/workspace/hw2/hw2_tests/testing_utils/libperf/CMakeFiles/perf.dir/libperf.c.o"
+  "/work/hw2/hw2_tests/testing_utils/libperf/libperf.c" "/work/hw2/hw2_tests/testing_utils/libperf/CMakeFiles/perf.dir/libperf.c.o"
   )
 set(CMAKE_C_COMPILER_ID "GNU")
 

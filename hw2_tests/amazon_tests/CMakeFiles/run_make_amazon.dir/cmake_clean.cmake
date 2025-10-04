@@ -1,6 +1,6 @@
 file(REMOVE_RECURSE
+  "/work/hw2/amazon"
   "CMakeFiles/run_make_amazon"
-  "/home/codio/workspace/hw2/amazon"
 )
 
 # Per-language clean rules from dependency scanning.
