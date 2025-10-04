@@ -86,18 +86,18 @@ void MyDataStore::dump(std::ostream& ofile) {
 }
 
 void MyDataStore::addToCart(const std::string& username, int hitIdx){
-    std::string tempUser = convToLower(username);
-    if (users.find(tempUser) != users.end() && (hitIdx > -1 && hitIdx < (int)lastHits.size())){
-        userCart[users.find(tempUser)->second].push_back(lastHits[hitIdx]);
+    std::map<std::string, User*>::iterator aUser = users.find(convToLower(username));
+    if (aUser != users.end() && (hitIdx > -1 && hitIdx < (int)lastHits.size())){
+        userCart[aUser->second].push_back(lastHits[hitIdx]);
     }else{
         std::cout << "Invalid request" << std::endl;
     }
 }
 void MyDataStore::viewCart(const std::string& username){
-    std::string tempUser = convToLower(username);
-    if (users.find(tempUser) != users.end()){
+    std::map<std::string, User*>::iterator aUser = users.find(convToLower(username));
+    if (aUser != users.end()){
         int i = 1;
-        for (Product* p : userCart[users.find(tempUser)->second]){
+        for (Product* p : userCart[aUser->second]){
             std::cout << "Item #" << i << std::endl;
             p->displayString();
             i++;
@@ -110,15 +110,16 @@ void MyDataStore::buyCart(const std::string& username){
     std::map<std::string, User*>::iterator aUser = users.find(convToLower(username));
     if (aUser != users.end()){
         std::map<User*, std::vector<Product*>>::iterator tempCart = userCart.find(aUser->second);
-
-        std::vector<Product*>::iterator it = tempCart->second.begin();
-        while (it != tempCart->second.end()){
-            if ((*it)->getQty() > 0 && aUser->second->getBalance() >= (*it)->getPrice()){
-                (*it)->subtractQty(1);
-                aUser->second->deductAmount((*it)->getPrice());
-                it = tempCart->second.erase(it);
-            }else{
-                ++it;
+        if (tempCart != userCart.end()){
+            std::vector<Product*>::iterator it = tempCart->second.begin();
+            while (it != tempCart->second.end()){
+                if ((*it)->getQty() > 0 && aUser->second->getBalance() >= (*it)->getPrice()){
+                    (*it)->subtractQty(1);
+                    aUser->second->deductAmount((*it)->getPrice());
+                    it = tempCart->second.erase(it);
+                }else{
+                    ++it;
+                }
             }
         }
     }else{

@@ -17,23 +17,15 @@ std::set<std::string> parseStringToWords(string rawWords)
 {
     std::set<std::string> list;
     string tempString = convToLower(rawWords);
+    string temp = "";
     for (size_t i = 0; i < tempString.size(); i++){
-        string temp = "";
-        for (size_t j = i; j < tempString.size(); j++){
-            if (tempString[j] == ' ' || (ispunct(tempString[j]) && tempString[j] != '-')){
-                if (j == tempString.size() - 1 && tempString[j] != ' ' && !ispunct(tempString[j])){
-                    temp += tempString[j];
-                }
-                if (temp.size() >= 2){
-                    list.insert(temp);
-                    i = j;
-                    break;
-                }else{
-                    i = j;
-                    break;
-                }
+        if (tempString[i] == ' ' || (ispunct(tempString[i]) && tempString[i] != '-') || i == tempString.size()-1){
+            if (temp.size() >= 2){
+                list.insert(temp);
             }
-            temp += tempString[j];
+            temp = "";
+        }else{
+            temp += tempString[i];
         }
     }
     return list;
