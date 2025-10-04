@@ -20,6 +20,9 @@ std::set<std::string> parseStringToWords(string rawWords)
     string temp = "";
     for (size_t i = 0; i < tempString.size(); i++){
         if (tempString[i] == ' ' || (ispunct(tempString[i]) && tempString[i] != '-') || i == tempString.size()-1){
+            if (i == tempString.size() - 1 && tempString[i] != ' ' && !(ispunct(tempString[i]) && tempString[i] != '-')) {
+                temp += tempString[i];
+            }
             if (temp.size() >= 2){
                 list.insert(temp);
             }
@@ -27,6 +30,9 @@ std::set<std::string> parseStringToWords(string rawWords)
         }else{
             temp += tempString[i];
         }
+    }
+    if (temp.size() >= 2){
+        list.insert(temp);
     }
     return list;
 
