@@ -99,7 +99,7 @@ void MyDataStore::viewCart(const std::string& username){
         int i = 1;
         for (Product* p : userCart[aUser->second]){
             std::cout << "Item #" << i << std::endl;
-            p->displayString();
+            std::cout << p->displayString() << std::endl;
             i++;
         }
     }else{
