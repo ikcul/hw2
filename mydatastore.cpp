@@ -95,8 +95,10 @@ void MyDataStore::addToCart(const std::string& username, int hitIdx){
 }
 void MyDataStore::viewCart(const std::string& username){
     std::map<std::string, std::vector<Product*>>::iterator cartIt = userCart.find(convToLower(username));
-    if (cartIt != userCart.end() || users.find(convToLower(username)) != users.end()){
-        if (!(cartIt != userCart.end())){
+    if (users.find(convToLower(username)) == users.end()){
+        std::cout << "Invalid username" << std::endl;
+    }else{
+        if (cartIt == userCart.end()){
             return;
         }
         int i = 1;
@@ -105,8 +107,6 @@ void MyDataStore::viewCart(const std::string& username){
             std::cout << p->displayString() << std::endl;
             i++;
         }
-    }else{
-        std::cout << "Invalid username" << std::endl;
     }
 }
 void MyDataStore::buyCart(const std::string& username){
