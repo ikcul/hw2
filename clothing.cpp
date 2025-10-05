@@ -35,12 +35,11 @@ bool Clothing::isMatch(std::vector<std::string>& searchTerms) const{
 /**
  * Returns a string to display the product info for hits of the search
  */
-std::string Clothing::displayString() const {
-    std::stringstream ss;
-    ss << getName() << "\n"
-       << "Size: " << size_ << " Brand: " << brand_ << "\n"
-       << std::fixed << std::setprecision(2) << getPrice() << " " << getQty() << " left.";
-    return ss.str();
+std::string Clothing::displayString() const{
+    std::string display = name_ + "\n" + 
+                "Size: " + size_ + " Brand: " + brand_ + "\n" + 
+                to_string(price_) + " " + to_string(qty_) + " left.";
+    return display;
 }
 
 /**
