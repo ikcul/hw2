@@ -1,4 +1,8 @@
 *.o
 amazon
 hw2_tests/
+<<<<<<< HEAD
 .vscode/
+=======
+.vscode/
+>>>>>>> 1b50daa (smth)
