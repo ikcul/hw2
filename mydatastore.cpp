@@ -4,7 +4,11 @@
 #include "book.h"
 #include "clothing.h"
 #include "movie.h"
-
+struct ProdNameSorter {
+    bool operator()(Product* p1, Product* p2) {
+        return (p1->getName() < p2->getName());
+    }
+};
 MyDataStore::MyDataStore(){
 
 }
@@ -68,6 +72,7 @@ std::vector<Product*> MyDataStore::search(std::vector<std::string>& terms, int t
     }
     lastHits.clear();
     lastHits.assign(temp.begin(), temp.end());
+    std::sort(lastHits.begin(), lastHits.end(), ProdNameSorter());
     return lastHits;
 }
 
