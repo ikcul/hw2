@@ -26,7 +26,6 @@ void MyDataStore::addUser(User* user){
 
 void MyDataStore::addProduct(Product* product){
     products.push_back(product);
-    std::cout << "lastHits size = " << lastHits.size() << std::endl;
     std::set<std::string> tempKey = product->keywords();
     for (std::string s : tempKey){
         s = convToLower(s);
@@ -67,6 +66,7 @@ std::vector<Product*> MyDataStore::search(std::vector<std::string>& terms, int t
             }
         }
     }
+    std::cout << "lastHits size = " << lastHits.size() << std::endl;
     lastHits = std::vector<Product*>(temp.begin(), temp.end());
     return lastHits;
 }
