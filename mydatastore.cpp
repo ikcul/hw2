@@ -99,19 +99,13 @@ void MyDataStore::dump(std::ostream& ofile) {
 }
 
 void MyDataStore::addToCart(const std::string& username, int hitIdx){
-    std::cout << "addToCart called with username='" << username << "' hitIdx=" << hitIdx << std::endl;
-    std::cout << "lastHits.size()=" << lastHits.size() << std::endl;
     std::map<std::string, User*>::iterator aUser = users.find(convToLower(username));
-    std::cout << "user found=" << (aUser != users.end()) << std::endl;
-    std::cout << "hitIdx in range=" << (hitIdx >= 1 && hitIdx <= (int)lastHits.size()) << std::endl;
     if (aUser != users.end() && (hitIdx >= 1 && hitIdx <= (int)lastHits.size())){
         if (userCart.find(convToLower(username)) == userCart.end()){
             std::vector<Product*> temp;
             userCart.insert(std::make_pair(convToLower(username), temp));
         }
         userCart[convToLower(username)].push_back(lastHits[hitIdx - 1]);
-        std::cout << "Cart size now=" << userCart[convToLower(username)].size() << std::endl;
-
     }else{
         std::cout << "Invalid request" << std::endl;
     }
