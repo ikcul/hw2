@@ -87,7 +87,6 @@ void MyDataStore::dump(std::ostream& ofile) {
 
 void MyDataStore::addToCart(const std::string& username, int hitIdx){
     std::map<std::string, User*>::iterator aUser = users.find(convToLower(username));
-    std::cout << "lastHits size: " << lastHits.size()  << ", hitIdx: " << hitIdx  << ", user exists: " << (aUser != users.end())  << std::endl;
     if (aUser != users.end() && (hitIdx >= 1 && hitIdx <= (int)lastHits.size())){
         userCart[convToLower(username)].push_back(lastHits[hitIdx - 1]);
     }else{
