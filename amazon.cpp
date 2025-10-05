@@ -105,7 +105,6 @@ int main(int argc, char* argv[])
                 string username;
                 int hitIdx;
                 if (ss >> username >> hitIdx){
-                    hitIdx--;
                     ds.addToCart(username, hitIdx);
                 }
             }else if ( cmd == "VIEWCART"){
