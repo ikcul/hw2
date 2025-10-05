@@ -26,7 +26,7 @@ void MyDataStore::addUser(User* user){
 
 void MyDataStore::addProduct(Product* product){
     products.push_back(product);
-
+    std::cout << "lastHits size = " << lastHits.size() << std::endl;
     std::set<std::string> tempKey = product->keywords();
     for (std::string s : tempKey){
         s = convToLower(s);
