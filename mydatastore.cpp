@@ -29,6 +29,7 @@ void MyDataStore::addProduct(Product* product){
 
     std::set<std::string> tempKey = product->keywords();
     for (std::string s : tempKey){
+        s = convToLower(s);
         if (keyToProducts.find(s) != keyToProducts.end()){
             keyToProducts[s].insert(product);
         }
@@ -86,6 +87,9 @@ void MyDataStore::dump(std::ostream& ofile) {
 }
 
 void MyDataStore::addToCart(const std::string& username, int hitIdx){
+    if (lastHits.empty()){
+        return;
+    }
     std::map<std::string, User*>::iterator aUser = users.find(convToLower(username));
     if (aUser != users.end() && (hitIdx >= 1 && hitIdx <= (int)lastHits.size())){
         if (userCart.find(convToLower(username)) == userCart.end()){
