@@ -38,11 +38,12 @@ bool Book::isMatch(std::vector<std::string>& searchTerms) const{
 /**
  * Returns a string to display the product info for hits of the search
  */
-std::string Book::displayString() const{
-    std::string display = name_ + "\n" + 
-                "Author: " + author_ + " ISBN: " + ISBN_ + "\n" + 
-                to_string(price_) + " " + to_string(qty_) + " left.";
-    return display;
+std::string Book::displayString() const {
+    std::stringstream ss;
+    ss << name_ << "\n"
+       << "Author: " << author_ << " ISBN: " << ISBN_<< "\n"
+       << std::fixed << std::setprecision(2) << price_ << " " << qty_ << " left.";
+    return ss.str();
 }
 
 /**
