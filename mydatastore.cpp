@@ -111,14 +111,13 @@ void MyDataStore::viewCart(const std::string& username){
     if (users.find(convToLower(username)) == users.end()){
         std::cout << "Invalid username" << std::endl;
     }else{
-        if (cartIt == userCart.end()){
-            return;
-        }
-        int i = 1;
-        for (Product* p : cartIt->second){
-            std::cout << "Item #" << i << std::endl;
-            std::cout << p->displayString() << std::endl;
-            i++;
+        if (cartIt != userCart.end()) {
+            int i = 1;
+            for (Product* p : cartIt->second) {
+                std::cout << "Item #" << i << std::endl;
+                std::cout << p->displayString() << std::endl;
+                i++;
+            }
         }
     }
 }
