@@ -99,9 +99,6 @@ void MyDataStore::dump(std::ostream& ofile) {
 }
 
 void MyDataStore::addToCart(const std::string& username, int hitIdx){
-    if (lastHits.empty()){
-        return;
-    }
     std::map<std::string, User*>::iterator aUser = users.find(convToLower(username));
     if (aUser != users.end() && (hitIdx >= 1 && hitIdx <= (int)lastHits.size())){
         if (userCart.find(convToLower(username)) == userCart.end()){
@@ -148,4 +145,12 @@ void MyDataStore::buyCart(const std::string& username){
     }else{
         std::cout << "Invalid username" << std::endl;
     }
+}
+
+std::vector<Product*> MyDataStore::getCart(const std::string& username){
+    std::map<std::string, std::vector<Product*>>::iterator it = userCart.find(convToLower(username));
+    if (it != userCart.end()) {
+        return it->second;
+    }
+    return std::vector<Product*>();
 }
