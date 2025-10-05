@@ -43,42 +43,34 @@ void MyDataStore::addProduct(Product* product){
     }
 }
 
-std::vector<Product*> MyDataStore::search(std::vector<std::string>& terms, int type) {
-    if (type == 0) {
-        std::set<Product*> resultSet;
-        if (terms.empty()) { 
-             lastHits.clear();
-             return lastHits;
+std::vector<Product*> MyDataStore::search(std::vector<std::string>& terms, int type){
+    std::string tempString;
+    for (std::string& s : terms){
+        tempString += s + " ";
+    }  
+    std::set<std::string> tempTerms = parseStringToWords(tempString);  
+    std::vector<std::set<Product*>> hits;
+    for (std::set<std::string>::iterator it = tempTerms.begin(); it != tempTerms.end(); ++it){
+        std::map<std::string, std::set<Product*>>::iterator tempKeyTerm = keyToProducts.find(*it);
+        if (tempKeyTerm != keyToProducts.end()){
+            hits.push_back(tempKeyTerm->second);
         }
-        std::string term = convToLower(terms[0]);
-        std::map<std::string, std::set<Product*>>::iterator it = keyToProducts.find(term);
-        if (it != keyToProducts.end()) {
-            resultSet = it->second;
-        }
-        for (size_t i = 1; i < terms.size(); ++i) {
-            std::set<Product*> currentHits;
-            term = convToLower(terms[i]);
-            std::map<std::string, std::set<Product*>>::iterator it2 = keyToProducts.find(term);
-            if (it2 != keyToProducts.end()) {
-                currentHits = it2->second;
-            }
-            resultSet = setIntersection(resultSet, currentHits);
-        }
-        lastHits.assign(resultSet.begin(), resultSet.end());
     }
-    else {
-        std::set<Product*> resultSet;
-        for (size_t i = 0; i < terms.size(); ++i) {
-            std::set<Product*> currentHits;
-            std::string term = convToLower(terms[i]);
-            std::map<std::string, std::set<Product*>>::iterator it = keyToProducts.find(term);
-            if (it != keyToProducts.end()) {
-                currentHits = it->second;
-            }
-            resultSet = setUnion(resultSet, currentHits);
+    std::set<Product*> temp;
+    if (type){
+        for (std::set<Product*> s : hits){
+            temp = setUnion(temp, s);
         }
-        lastHits.assign(resultSet.begin(), resultSet.end());
+    }else{
+        if (!hits.empty()){
+            temp = hits[0];
+            for (size_t i = 1; i < hits.size(); i++){
+                temp = setIntersection(temp, hits[i]);
+            }
+        }
     }
+    lastHits.clear();
+    lastHits.assign(temp.begin(), temp.end());
     std::sort(lastHits.begin(), lastHits.end(), ProdNameSorter());
     return lastHits;
 }
