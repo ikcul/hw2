@@ -25,8 +25,6 @@ public:
     void addToCart(const std::string& username, int hitIdx);
     void viewCart(const std::string& username);
     void buyCart(const std::string& username);
-
-    std::vector<Product*> getCart(const std::string& username);
 private:
     std::vector<Product*> products;
     std::vector<Product*> lastHits;
