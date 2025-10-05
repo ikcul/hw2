@@ -67,11 +67,9 @@ std::vector<Product*> MyDataStore::search(std::vector<std::string>& terms, int t
         }
     }
     lastHits.clear();
-    for (std::set<Product*> s : hits) {
-        for (Product* p : products) { 
-            if (s.find(p) != s.end()) {
-                lastHits.push_back(p);
-            }
+    for (Product* p : products) {
+        if (temp.find(p) != temp.end()) {
+            lastHits.push_back(p);
         }
     }
     return lastHits;
