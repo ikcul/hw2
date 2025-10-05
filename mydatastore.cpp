@@ -50,13 +50,15 @@ std::vector<Product*> MyDataStore::search(std::vector<std::string>& terms, int t
              lastHits.clear();
              return lastHits;
         }
-        std::map<std::string, std::set<Product*>>::iterator it = keyToProducts.find(terms[0]);
+        std::string term = convToLower(terms[0]);
+        std::map<std::string, std::set<Product*>>::iterator it = keyToProducts.find(term);
         if (it != keyToProducts.end()) {
             resultSet = it->second;
         }
         for (size_t i = 1; i < terms.size(); ++i) {
             std::set<Product*> currentHits;
-            std::map<std::string, std::set<Product*>>::iterator it2 = keyToProducts.find(terms[i]);
+            term = convToLower(terms[i]);
+            std::map<std::string, std::set<Product*>>::iterator it2 = keyToProducts.find(term);
             if (it2 != keyToProducts.end()) {
                 currentHits = it2->second;
             }
@@ -68,7 +70,8 @@ std::vector<Product*> MyDataStore::search(std::vector<std::string>& terms, int t
         std::set<Product*> resultSet;
         for (size_t i = 0; i < terms.size(); ++i) {
             std::set<Product*> currentHits;
-            std::map<std::string, std::set<Product*>>::iterator it = keyToProducts.find(terms[i]);
+            std::string term = convToLower(terms[i]);
+            std::map<std::string, std::set<Product*>>::iterator it = keyToProducts.find(term);
             if (it != keyToProducts.end()) {
                 currentHits = it->second;
             }
