@@ -88,7 +88,12 @@ void MyDataStore::dump(std::ostream& ofile) {
 void MyDataStore::addToCart(const std::string& username, int hitIdx){
     std::map<std::string, User*>::iterator aUser = users.find(convToLower(username));
     if (aUser != users.end() && (hitIdx >= 1 && hitIdx <= (int)lastHits.size())){
+        if (userCart.find(convToLower(username)) == userCart.end()){
+            std::vector<Product*> temp;
+            userCart.insert(std::make_pair(convToLower(username), temp));
+        }
         userCart[convToLower(username)].push_back(lastHits[hitIdx - 1]);
+
     }else{
         std::cout << "Invalid request" << std::endl;
     }
