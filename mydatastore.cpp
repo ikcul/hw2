@@ -66,8 +66,8 @@ std::vector<Product*> MyDataStore::search(std::vector<std::string>& terms, int t
             }
         }
     }
-    std::cout << "lastHits size = " << lastHits.size() << std::endl;
     lastHits = std::vector<Product*>(temp.begin(), temp.end());
+    std::cout << "lastHits size = " << lastHits.size() << std::endl;
     return lastHits;
 }
 
